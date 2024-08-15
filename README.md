@@ -15,7 +15,7 @@
 #### 1. リポジトリをクローン
 
 ```
-git clone https://github.com/twosun-8-git/zod.git
+git clone https://github.com/twosun-8-git/react-hook-form-zod.git
 ```
 
 #### 2. モジュールをインストール

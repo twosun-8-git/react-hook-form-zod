@@ -90,28 +90,28 @@ export default function Page() {
   }, [isDirty]);
 
   // コンソールに表示
-  // useEffect(() => {
-  //   console.table([
-  //     {
-  //       状態: "フォーム状態",
-  //       isDirty,
-  //       isValid,
-  //       isSubmitting,
-  //       isSubmitted,
-  //       isSubmitSuccessful,
-  //     },
-  //   ]);
+  useEffect(() => {
+    console.table([
+      {
+        状態: "フォーム状態",
+        isDirty,
+        isValid,
+        isSubmitting,
+        isSubmitted,
+        isSubmitSuccessful,
+      },
+    ]);
 
-  //   console.table(
-  //     Object.entries(errors).map(([key, value]) => ({
-  //       フィールド: key,
-  //       エラーメッセージ:
-  //         value && typeof value === "object" && "message" in value
-  //           ? value.message
-  //           : JSON.stringify(value),
-  //     }))
-  //   );
-  // }, [errors, isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid]);
+    console.table(
+      Object.entries(errors).map(([key, value]) => ({
+        フィールド: key,
+        エラーメッセージ:
+          value && typeof value === "object" && "message" in value
+            ? value.message
+            : JSON.stringify(value),
+      }))
+    );
+  }, [errors, isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid]);
 
   return (
     <div>
@@ -228,7 +228,7 @@ export default function Page() {
               </div>
             </div>
           )}
-        />{" "}
+        />
         <Controller
           name="newsLatter"
           control={control}
@@ -310,7 +310,7 @@ export default function Page() {
         <div className="button-group">
           <button
             type="submit"
-            // disabled={!isDirty || !isValid || isSubmitSuccessful}
+            disabled={!isDirty || !isValid || isSubmitSuccessful}
           >
             送信
           </button>

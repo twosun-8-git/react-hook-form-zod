@@ -7,14 +7,14 @@ export const Gender = {
   other: "other",
 } as const;
 
-export const NewsLatter = {
+export const NewsLetter = {
   receive: "receive",
   reject: "reject",
 } as const;
 
 // z.enumの型: [string, ...string[]]
 const GenderValues = Object.values(Gender) as [string, ...string[]];
-const NewsLatterValues = Object.values(NewsLatter) as [string, ...string[]];
+const NewsLetterValues = Object.values(NewsLetter) as [string, ...string[]];
 
 // 1以上の整数のみ許可するスキーマ（全角可）
 const NumberIntSchema = (label: string, min: number = 1) =>
@@ -80,7 +80,7 @@ export const FormSchema = z.object({
       message: "メールアドレスが一致しません",
       path: ["confirmEmail"],
     }),
-  newsLatter: z.enum(NewsLatterValues, {
+  newsLetter: z.enum(NewsLetterValues, {
     required_error: "お知らせの受け取り方法を選択してください",
   }),
   comment: z

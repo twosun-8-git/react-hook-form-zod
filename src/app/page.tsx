@@ -5,19 +5,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, SubmitHandler } from "react-hook-form";
 
 // バリデーション用スキーマ
-import { Gender, NewsLatter, FormSchema } from "./schema";
+import { Gender, NewsLetter, FormSchema } from "./schema";
 
 type FormData = z.infer<typeof FormSchema>;
 
 export default function Page() {
   // 初期値
-  const defaultValues = {
+  const defaultValues: FormData = {
     fullName: "",
     age: "",
     gender: Gender.empty,
     emails: { email: "", confirmEmail: "" },
-    commnet: "",
-    newsLatter: NewsLatter.receive,
+    comment: "",
+    newsLetter: NewsLetter.receive,
     agree: true,
   };
 
@@ -51,11 +51,12 @@ export default function Page() {
         setTimeout(() => {
           const isSuccess = Math.random() < 0.5;
           if (isSuccess) {
-            console.log("送信成功:", data);
+            console.log("%c送信成功%c", "color:green;font-weight:bold;", "");
+            console.table(data);
             // reset(); 本来ならフォーム送信成功後はフォームをリセット
             resolve();
           } else {
-            console.log("送信失敗");
+            console.log("%c送信失敗%c", "color:red;font-weight:bold;", "");
             reject(new Error("送信に失敗しました"));
           }
         }, 1500);
@@ -88,30 +89,6 @@ export default function Page() {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [isDirty]);
-
-  // コンソールに表示
-  useEffect(() => {
-    console.table([
-      {
-        状態: "フォーム状態",
-        isDirty,
-        isValid,
-        isSubmitting,
-        isSubmitted,
-        isSubmitSuccessful,
-      },
-    ]);
-
-    console.table(
-      Object.entries(errors).map(([key, value]) => ({
-        フィールド: key,
-        エラーメッセージ:
-          value && typeof value === "object" && "message" in value
-            ? value.message
-            : JSON.stringify(value),
-      }))
-    );
-  }, [errors, isDirty, isSubmitSuccessful, isSubmitted, isSubmitting, isValid]);
 
   return (
     <div>
@@ -230,7 +207,7 @@ export default function Page() {
           )}
         />
         <Controller
-          name="newsLatter"
+          name="newsLetter"
           control={control}
           render={({ field, fieldState }) => (
             <div
@@ -243,8 +220,8 @@ export default function Page() {
                     <input
                       type="radio"
                       {...field}
-                      value={NewsLatter.receive}
-                      checked={field.value === NewsLatter.receive}
+                      value={NewsLetter.receive}
+                      checked={field.value === NewsLetter.receive}
                     />
                     受け取る
                   </label>
@@ -252,8 +229,8 @@ export default function Page() {
                     <input
                       type="radio"
                       {...field}
-                      value={NewsLatter.reject}
-                      checked={field.value === NewsLatter.reject}
+                      value={NewsLetter.reject}
+                      checked={field.value === NewsLetter.reject}
                     />
                     受け取らない
                   </label>

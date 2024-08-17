@@ -31,3 +31,8 @@ npm run dev
 ```
 
 #### 4. http://localhost:3000 にアクセス
+
+## 📄 関連リポジトリ
+
+- [react-hook-from](https://github.com/twosun-8-git/react-hook-form)
+- [react-hook-form x Yup](https://github.com/twosun-8-git/react-hook-form-yup)
